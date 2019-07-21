@@ -5,7 +5,18 @@ This project repo contains a simple set codes and explanations which can enable 
 
 From my personal experience with Getting started with Envoy, I could not find much resources online which could help a beginner like me to setup a simple front envoy which would connect to multiple services having their sidecar envoy proxies.
 
+Below is a simple illustration of the deployment diagram which represents the final look of the components when they are deployed on a Kubernetes cluster
+
 ![Envoy proxy mesh diagram](envoyproxymeshdeploymentdiagram.png?raw=true "Deployment diagram")
+
+
+### Why Headless service with Envoy proxy mesh ?
+In Kubernetes there is a specific kind of service called a headless service, which happens to be very convenient to be used together with Envoy's STRICT_DNS service discovery mode.
+
+A headless service doesn't provide a single IP and load balancing to the underlying pods, but rather it just has DNS configuration which gives us an A record with the pod's IP address for all the pods matching the label selector.  
+This service type is intended to be used in scenarios when we want to implement load balancing, and maintaining the connections to the upstream pods ourselves, which is exactly what we can do with Envoy.
+
+We can create a headless service by setting the .spec.clusterIP field to "None".And the way the STRICT_DNS service discovery of Envoy works is that it maintains the IP address of all the A records returned by the DNS, and it refreshes the set of IPs every couple of seconds.
 
 The instructions below will get you a copy of the project up and running on your local machine for development and testing purposes using docker. See deployment for notes on how to deploy the project on a live kubernetes cluster.
 
