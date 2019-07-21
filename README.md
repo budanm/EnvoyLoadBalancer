@@ -1,4 +1,4 @@
-# EnvoyLoadBalancer
+# Envoy as a LoadBalancer using built-in support for a service discovery technique it calls STRICT_DNS
 This project repo contains a simple set codes and explanations which can enable someone to set up Envoy as a load balancer with the combination of headless service on Kubernetes cluster. 
 
 ## Getting Started with Envoy
@@ -82,6 +82,8 @@ Extract the envoy load balancer url
 Check curl <load_balancer_url>:80/service/1
 Check curl <load_balancer_url>:80/service/2
 ```
+## Modification avenues for the project
+If needed you can make changes to the service code and build the dockerfile using your own tag . However please do not forget to point to change in the corresponding deployment yaml files to point to the new docker images which you have pushed.
 
 ## Built With
 
