@@ -5,6 +5,8 @@ This project repo contains a simple set codes and explanations which can enable 
 
 From my personal experience with Getting started with Envoy, I could not find much resources online which could help a beginner like me to setup a simple front envoy which would connect to multiple services having their sidecar envoy proxies.
 
+![Envoy proxy mesh diagram](envoyproxymeshdeploymentdiagram.png?raw=true "Deployment diagram")
+
 The instructions below will get you a copy of the project up and running on your local machine for development and testing purposes using docker. See deployment for notes on how to deploy the project on a live kubernetes cluster.
 
 ### Prerequisites
