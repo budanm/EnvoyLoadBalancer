@@ -1,4 +1,4 @@
-# Envoy as a LoadBalancer using built-in support for a service discovery technique it calls STRICT_DNS
+# Envoy as a LoadBalancer with STRICT_DNS Service Discovery Mechanism
 This project repo contains a simple set codes and explanations which can enable someone to set up Envoy as a load balancer with the combination of headless service on Kubernetes cluster. 
 
 ## Getting Started with Envoy
