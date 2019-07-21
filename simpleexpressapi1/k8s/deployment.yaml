@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expressservice1
+spec:
+  selector:
+    matchLabels:
+      app: expressservice1
+  template:
+    metadata:
+      labels:
+        app: expressservice1
+    spec:
+      containers:
+      - name: expressservice1
+        image: dockershome/expressserviceenvoy1
+        ports:
+        - containerPort: 8080

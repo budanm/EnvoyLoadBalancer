@@ -1,0 +1,16 @@
+{
+  "name": "simpleexpressapi2",
+  "version": "1.0.0",
+  "description": "This is a simple express api app service 2 for demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "forever start app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Soumya Mukhopadhyay",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
