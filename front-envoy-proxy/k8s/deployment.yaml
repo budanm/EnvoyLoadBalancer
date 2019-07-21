@@ -15,7 +15,7 @@ spec:
       serviceAccountName: frontenvoysa
       containers:
       - name: front-envoy-proxy
-        image: dockershome/simplefrontenvoy
+        image: dockershome/simplefrontenvoy:lua
         ports:
         - containerPort: 80
           protocol: TCP

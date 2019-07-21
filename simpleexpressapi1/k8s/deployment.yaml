@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: expressservice1
-        image: dockershome/expressserviceenvoy1
+        image: dockershome/expressserviceenvoy1:lua
         ports:
         - containerPort: 8080
