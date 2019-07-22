@@ -22,10 +22,18 @@ static_resources:
                   prefix: "/service/1"
                 route:
                   cluster: service1
+                metadata:
+                  filter_metadata:
+                    envoy.lua:
+                      api: s1
               - match:
                   prefix: "/service/2"
                 route:
                   cluster: service2
+                metadata:
+                  filter_metadata:
+                    envoy.lua:
+                      api: s2
           http_filters:
           - name: envoy.lua
             typed_config:
@@ -33,10 +41,34 @@ static_resources:
               inline_code: |
                 function envoy_on_request(request_handle)
                   request_handle:headers():add("x-frontenvoy", "true")
+                  
                 end
                 function envoy_on_response(response_handle)
                   body_size = response_handle:body():length()
-                  response_handle:headers():add("x-front-envoy-response-body-size", tostring(body_size))
+                  response_handle:headers():add("x-frontdefault-envoy-response-body-size", tostring(body_size))
+                  local metadata = response_handle:metadata()
+                  if metadata:get("api") == 's1' then
+                    response_handle:headers():add("x-service1-envoy-response-body-size", tostring(body_size))
+                  elseif metadata:get("api") == 's2' then
+                    response_handle:headers():add("x-service2-envoy-response-body-size", tostring(body_size))
+                  else
+                    response_handle:headers():add("x-front-envoy-response-body-size", tostring(body_size))
+                  end
+
+                  response_handle:headers():add("x-frontdefault-envoy-response-body-size", tostring(body_size))
+
+                end
+          - name: envoy.lua
+            typed_config:
+              "@type": type.googleapis.com/envoy.config.filter.http.lua.v2.Lua
+              inline_code: |
+                function envoy_on_request(request_handle)
+                  request_handle:headers():add("x-frontenvoy", "true")
+                  
+                end
+                function envoy_on_response(response_handle)
+                  body_size = response_handle:body():length()
+                  response_handle:headers():add("x-front2-envoy-response-body-size", tostring(body_size))
                 end
           - name: envoy.router
             typed_config: {}
