@@ -3,3 +3,4 @@
 example-com.crt
 example-com.key
 .rnd
+/front-envoy-proxy/certificates/
