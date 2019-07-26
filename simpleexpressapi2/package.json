@@ -4,13 +4,17 @@
   "description": "This is a simple express api app service 2 for demo",
   "main": "index.js",
   "scripts": {
-    "start": "forever start app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Soumya Mukhopadhyay",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "express": "^4.17.1"
+    "client-certificate-auth": "^0.3.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "tls": "0.0.1"
   }
 }

@@ -30,6 +30,17 @@ static_resources:
     connect_timeout: 0.25s
     type: strict_dns
     lb_policy: round_robin
+    tls_context:
+      common_tls_context:
+        sni: "example.com"
+        tls_certificates:
+          - certificate_chain:
+              filename: "/usr/src/app/certs/clientnode-crt.pem"
+            private_key:
+              filename: "/usr/src/app/certs/clientnode-key.pem"
+        validation_context:
+          trusted_ca:
+            filename: "/usr/src/app/certs/canode-crt.pem"
     load_assignment:
       cluster_name: local_service
       endpoints:
