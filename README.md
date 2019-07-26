@@ -83,7 +83,7 @@ Check curl <load_balancer_url>:80/service/1
 Check curl <load_balancer_url>:80/service/2
 ```
 ## Modification avenues for the project
-If needed you can make changes to the service code and build the dockerfile using your own tag . However please do not forget to point to change in the corresponding deployment yaml files to point to the new docker images which you have pushed.
+If needed you can make changes to the service code and build the dockerfile using your own tag . However please do not forget to make changes in the corresponding deployment yaml files to point to the new docker images which you have pushed.
 
 ## Built With
 
