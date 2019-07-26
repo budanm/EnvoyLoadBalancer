@@ -51,13 +51,12 @@ static_resources:
               - match:
                   prefix: "/service/2"
                 route:
-                  cluster: service2
-              
+                  cluster: service2              
               - match:
-                  prefix: "/h"
+                  prefix: "/httpbin"
                 route:
                   cluster: httpbin
-                  prefix_rewrite: /anything
+                  host_rewrite: httpbin.org
           http_filters:
           - name: envoy.router
             typed_config: {}
@@ -102,19 +101,14 @@ static_resources:
                 address: service2
                 port_value: 80
   - name: httpbin
+    common_lb_config:
+      healthy_panic_threshold:
+        value: 0.0
     connect_timeout: 0.25s
-    type: strict_dns
-    lb_policy: round_robin
-    http2_protocol_options: {}
-    load_assignment:
-      cluster_name: httpbin
-      endpoints:
-      - lb_endpoints:
-        - endpoint:
-            address:
-              socket_address:
-                address: httpbin.org
-                port_value: 80
+    type: STRICT_DNS
+    dns_lookup_family: V4_ONLY
+    lb_policy: ROUND_ROBIN
+    hosts: [{ socket_address: { address: httpbin.org, port_value: 80 }}]
 admin:
   access_log_path: "/dev/null"
   address:

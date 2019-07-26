@@ -5,6 +5,8 @@ services:
     build:
       context: ./front-envoy-proxy
       dockerfile: Dockerfile
+    volumes:
+      - ./front-envoy-proxy/front-envoy.yaml:/etc/front-envoy.yaml
     networks:
       - envoymesh
     ports:
